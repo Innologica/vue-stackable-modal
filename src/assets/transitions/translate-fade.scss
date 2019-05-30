@@ -1,0 +1,18 @@
+$transition-duration: 250ms !default;
+$translate-offset: 50px !default;
+$timing-function: cubic-bezier(.53,2,.36,.85) !default;
+
+//translate fade (right to left)
+.translate-fade-enter-active, .translate-fade-leave-active {
+  transition: all $transition-duration;
+  transition-timing-function: $timing-function;
+}
+.translate-fade-enter, .translate-fade-leave-active {
+  opacity: 0;
+}
+.translate-fade-enter {
+  transform: translateX($translate-offset);
+}
+.translate-fade-leave-active {
+  transform: translateX($translate-offset);
+}

@@ -1,10 +1,12 @@
-import Vue from 'vue'
-import App from './App.vue'
-import store from './store'
+import StackModal from './components/StackModal'
 
-Vue.config.productionTip = false
+const install = (Vue, options = {}) => {
+  Vue.component('StackModal', StackModal)
+}
 
-new Vue({
-  store,
-  render: h => h(App)
-}).$mount('#app')
+// auto install
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue)
+}
+
+export { install }

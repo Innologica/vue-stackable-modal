@@ -1,16 +1,17 @@
 {
-  "name": "vue-stackable-modal",
+  "name": "@innologica/vue-stackable-modal",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lib": "vue-cli-service build --target lib --name vue-stackable-modal ./src/main.js",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "dependencies": {
     "core-js": "^2.6.5",
     "vue": "^2.6.10",
-    "vuex": "^3.0.1"
+    "vuepress": "^0.14.11"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
@@ -21,6 +22,9 @@
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "babel-preset-vue": "^2.0.2",
+    "@babel/core": "^7.4.5",
+    "babel-loader": "^8.0.6"
   }
 }
