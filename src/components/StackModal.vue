@@ -108,7 +108,7 @@
 
       // this.$bus.$emit('modal-count', modalCount)
 
-      if (this.backdrop)
+      if (this.backdrop && this.show)
         document.body.removeChild(this.backdrop)
       // enableScroll()
       if (/*this.add_class && */modalCount === 0) {

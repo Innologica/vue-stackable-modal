@@ -10,8 +10,7 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
-    "vue": "^2.6.10",
-    "vuepress": "^0.14.11"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
@@ -25,6 +24,7 @@
     "vue-template-compiler": "^2.6.10",
     "babel-preset-vue": "^2.0.2",
     "@babel/core": "^7.4.5",
-    "babel-loader": "^8.0.6"
+    "babel-loader": "^8.0.6",
+    "vuepress": "^0.14.11"
   }
 }

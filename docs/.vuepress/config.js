@@ -1,4 +1,5 @@
 module.exports = {
+  base: '/vue-stackable-modal/',
   title: 'Hello VuePress',
   description: 'Just playing around',
   themeConfig: {
