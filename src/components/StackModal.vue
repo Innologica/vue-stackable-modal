@@ -6,7 +6,7 @@
                     <slot name="modal-header">
                         <div class="modal-header" v-if="title">
                             <h5 class="modal-title">{{title}}</h5>
-                            <a v-if="closeButton" class="close" aria-label="Close" @click.stop="$emit('close')">
+                            <a class="close" aria-label="Close" @click.stop="$emit('close')">
                                 <span aria-hidden="true">×</span>
                             </a>
                         </div>
@@ -17,14 +17,18 @@
                     <slot name="modal-footer">
                         <div class="modal-footer">
                             <button
-                                    v-if="saveButton"
+                                    v-if="saveButtonOptions.visible"
                                     type="button"
                                     @click="$emit('save')"
-                                    :class="{ [saveButtonClass]: true,  loading: saving }"
-                            >{{saveButtonTitle}}
+                                    :class="{ ...saveButtonOptions.btnClass }"
+                            >{{saveButtonOptions.title}}
                             </button>
-                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"
-                                    @click.stop="$emit('close')">{{closeButtonTitle}}
+                            <button
+                                    type="button"
+                                    :class="{ ...cancelButtonOptions.btnClass }"
+                                    data-dismiss="modal"
+                                    @click.stop="$emit('close')"
+                            >{{cancelButtonOptions.title}}
                             </button>
                         </div>
                     </slot>
@@ -49,29 +53,13 @@
         type: Boolean,
         default: true
       },
-      closeButton: {
-        type: Boolean,
-        default: true
-      },
-      closeButtonTitle: {
-        type: String,
-        default: 'Close'
-      },
       saveButton: {
-        type: Boolean,
-        default: true
+        type: Object,
+        default: () => ({})
       },
-      saveButtonClass: {
-        type: String,
-        default: 'btn btn-primary'
-      },
-      saveButtonTitle: {
-        type: String,
-        default: 'Save'
-      },
-      saving: {
-        type: Boolean,
-        default: false,
+      cancelButton: {
+        type: Object,
+        default: () => ({})
       },
       transition: {
         type: String,
@@ -81,22 +69,16 @@
     data () {
       return {
         backdrop: null,
-        add_class: false,
         zIndex: 0,
       }
     },
     mounted () {
       if (this.show) {
         modals.count++
-        // console.log('mounted shown', modalCount)
         this.zIndex = modals.count
       }
-      // this.$bus.$on('modal-count', (val) => {
-      //   this.totalModals = val
-      // })
 
       this.checkBackdrop()
-      // this.show ? disableScroll() : enableScroll()
 
       document.addEventListener("keydown", this.handleEscape)
     },
@@ -104,17 +86,12 @@
       if (this.show) {
         modals.count--
         this.zIndex = modals.count
-        // console.log('destroyed', modalCount)
       }
-
-      // this.$bus.$emit('modal-count', modalCount)
 
       if (this.backdrop && this.show)
         document.body.removeChild(this.backdrop)
-      // enableScroll()
-      if (/*this.add_class && */modals.count === 0) {
+      if (modals.count === 0) {
         document.body.classList.remove('modal-open')
-        // enableScroll()
       }
 
       document.removeEventListener("keydown", this.handleEscape)
@@ -126,43 +103,37 @@
         }
       },
       mouseDown (event) {
-        // console.log(event)
         if (this.$refs.modal === event.target) {
-          // console.log('close')
           this.$emit('close')
           event.preventDefault()
         }
       },
       checkBackdrop () {
-        if (this.show && this.zIndex === 1) {
-          // disableScroll()
-        } else if (!this.show && this.zIndex === modals.count) {
-          // enableScroll()
-        }
-
         if (!this.has_backdrop)
           return
 
-        // console.log(modalCount)
+        if (this.show && this.zIndex === 1) {
+          document.body.classList.remove('modal-open')
+        } else if (!this.show && this.zIndex === this.totalModals) {
+          // enableScroll()
+        }
 
         if (this.show) {
           this.backdrop = document.createElement('div')
           this.backdrop.classList.add('modal-backdrop', 'fade', 'show')
-          // if(modalCount > 0)
           this.backdrop.style.zIndex = 1048 + this.zIndex * 2;
           document.body.appendChild(this.backdrop)
-          this.add_class = true
         } else {
           if (this.backdrop) {
             document.body.removeChild(this.backdrop)
             document.body.classList.remove('modal-open')
-            this.add_class = false
           }
         }
       }
     },
     computed: {
       totalModals () {
+        //global static variable :)
         return modals.count
       },
       getStyle () {
@@ -179,8 +150,25 @@
           classes['modal-stack-' + idx] = true
         }
         classes.aside = this.zIndex !== this.totalModals
-        // console.log(classes)
         return {...classes, ...this.modalClass}
+      },
+      saveButtonOptions () {
+        const saveButtonDefaults = {
+          title: 'Save',
+          visible: true,
+          btnClass: {'btn btn-primary': true}
+        }
+
+        return {...saveButtonDefaults, ...this.saveButton}
+      },
+      cancelButtonOptions () {
+        const cancelButtonDefaults = {
+          title: 'Cancel',
+          visible: true,
+          btnClass: {'btn btn-outline-secondary': true}
+        }
+
+        return {...cancelButtonDefaults, ...this.cancelButton}
       }
     },
     watch: {
@@ -192,10 +180,6 @@
           document.body.classList.remove('modal-open')
         }
         this.checkBackdrop()
-      },
-      zIndex (value) {
-        modals.count = value
-        // this.$bus.$emit('modal-count', value)
       }
     }
   }
@@ -217,10 +201,6 @@
         transform-style: preserve-3d;
     }
 
-    .container {
-        margin: 5em auto;
-    }
-
     .modal {
         .modal-dialog {
             .modal-content {
@@ -228,7 +208,6 @@
             }
 
             &.aside {
-                /*@include transform($modal-translate-z);*/
                 @include preserve-3d();
 
                 &.modal-stack-1 .modal-content {

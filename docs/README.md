@@ -1,5 +1,36 @@
-# Stackable modals
+# Stackable modal
 
-Stackable modals is a library for modal dialogs which can be infinitely stacked.
+Stackable modals is a library for modal dialogs which can be infinitely stacked. 
+The component uses bootstrap for styling the modal but DOES NOT include it by default - 
+you need to import it yourself.
+
+When you open a second dialog the first one is scaled to 0.9 and position behind
+
+## Installation
+
+```shell
+npm i @innologica/vue-stackable-modal --save
+```
+
+or 
+
+```shell
+yarn add @innologica/vue-stackable-modal
+```
+
+include in project:
+
+## Getting started
+
+```JS
+import StackModal from '@innologica/vue-stackable-modal'
+
+Vue.use(StackModal, options)
+```
+
+## Example
 
 <StackableModalDemo/>
+
+## Source code
+<<< @/docs/.vuepress/components/StackableModalDemo.vue

@@ -1,15 +1,11 @@
 module.exports = {
   base: '/vue-stackable-modal/',
-  title: 'Hello VuePress',
-  description: 'Just playing around',
+  title: 'Stackable modals library',
+  description: 'Stackable modal by Innologica',
   themeConfig: {
     nav: [
-      { text: 'Getting Started', link: '/StackModal/' },
-      { text: 'API', link: '/api/' },
+      { text: 'Github', link: 'https://github.com/Innologica/vue-stackable-modal' }
     ],
-    sidebar: [
-      '/',
-      '/StackModal/'
-    ]
+    sidebar: 'auto'
   },
 }
