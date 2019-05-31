@@ -4,15 +4,27 @@
 
         <button @click="show=true">Open</button>
 
-        <stack-modal :show="show" @close="show=false">
+        <stack-modal
+                :show="show"
+                title="Modal 1"
+                @close="show=false"
+        >
             <button @click="show_second=true">Open</button>
         </stack-modal>
 
-        <stack-modal :show="show_second" @close="show_second=false">
+        <stack-modal
+                :show="show_second"
+                @close="show_second=false"
+                title="Modal 2"
+        >
             <button @click="show_third=true">Open</button>
         </stack-modal>
 
-        <stack-modal :show="show_third" @close="show_third=false">
+        <stack-modal
+                :show="show_third"
+                @close="show_third=false"
+                title="Modal 3"
+        >
             <button @click="show_third=true">Open</button>
         </stack-modal>
 

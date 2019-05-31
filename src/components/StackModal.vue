@@ -35,7 +35,9 @@
 </template>
 
 <script>
-  let modalCount = 0
+  import Vue from 'vue'
+
+  const modals = Vue.observable({count: 0})
 
   export default {
     name: 'StackModal',
@@ -81,14 +83,13 @@
         backdrop: null,
         add_class: false,
         zIndex: 0,
-        totalModals: 0,
       }
     },
     mounted () {
       if (this.show) {
-        modalCount++
+        modals.count++
         // console.log('mounted shown', modalCount)
-        this.zIndex = modalCount
+        this.zIndex = modals.count
       }
       // this.$bus.$on('modal-count', (val) => {
       //   this.totalModals = val
@@ -101,8 +102,8 @@
     },
     destroyed () {
       if (this.show) {
-        modalCount--
-        this.zIndex = modalCount
+        modals.count--
+        this.zIndex = modals.count
         // console.log('destroyed', modalCount)
       }
 
@@ -111,7 +112,7 @@
       if (this.backdrop && this.show)
         document.body.removeChild(this.backdrop)
       // enableScroll()
-      if (/*this.add_class && */modalCount === 0) {
+      if (/*this.add_class && */modals.count === 0) {
         document.body.classList.remove('modal-open')
         // enableScroll()
       }
@@ -120,7 +121,7 @@
     },
     methods: {
       handleEscape (e) {
-        if (this.show && e.keyCode === 27 && this.zIndex === modalCount) {
+        if (this.show && e.keyCode === 27 && this.zIndex === modals.count) {
           this.$emit('close')
         }
       },
@@ -135,7 +136,7 @@
       checkBackdrop () {
         if (this.show && this.zIndex === 1) {
           // disableScroll()
-        } else if (!this.show && this.zIndex === modalCount) {
+        } else if (!this.show && this.zIndex === modals.count) {
           // enableScroll()
         }
 
@@ -161,6 +162,9 @@
       }
     },
     computed: {
+      totalModals () {
+        return modals.count
+      },
       getStyle () {
         let style = {}
         if (this.show)
@@ -171,7 +175,7 @@
       getClass () {
         let classes = {}
         if (this.zIndex !== this.totalModals) {
-          let idx =  - this.zIndex + this.totalModals
+          let idx = this.totalModals - this.zIndex
           classes['modal-stack-' + idx] = true
         }
         classes.aside = this.zIndex !== this.totalModals
@@ -181,15 +185,16 @@
     },
     watch: {
       show (value) {
-        value ? modalCount++ : modalCount--
-        this.zIndex = modalCount
+        value ? modals.count++ : modals.count--
+        this.zIndex = modals.count
 
-        if (!value && modalCount === 0) {
+        if (!value && modals.count === 0) {
           document.body.classList.remove('modal-open')
         }
         this.checkBackdrop()
       },
       zIndex (value) {
+        modals.count = value
         // this.$bus.$emit('modal-count', value)
       }
     }
@@ -202,7 +207,8 @@
     $modal-translate-z: -60px; /* The first modal translateZ value*/
 
     @mixin transform($n) {
-        transform: scale(0.9) /* rotateY(45deg) translateZ($translateZ)*/ translate(- 2rem * $n, $n * -50px);
+        transform: scale(0.9) /* rotateY(45deg) translateZ($translateZ)*/
+        translate(- 2rem * $n, $n * -50px);
         transform-origin: top left;
         /*margin-top: (-$n - 3) * 1.75rem;*/
     }
@@ -225,13 +231,15 @@
                 /*@include transform($modal-translate-z);*/
                 @include preserve-3d();
 
-                &.modal-stack-2 .modal-content{
+                &.modal-stack-1 .modal-content {
                     @include transform(1);
                 }
-                &.modal-stack-3 .modal-content{
+
+                &.modal-stack-2 .modal-content {
                     @include transform(2);
                 }
-                &.modal-stack-4 .modal-content{
+
+                &.modal-stack-3 .modal-content {
                     @include transform(3);
                 }
             }
@@ -244,6 +252,7 @@
         .modal-visible-aside {
             display: block;
         }
+
         .modal-invisible-aside {
             display: none;
         }
