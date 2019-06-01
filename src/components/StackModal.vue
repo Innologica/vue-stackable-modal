@@ -46,21 +46,31 @@
   export default {
     name: 'StackModal',
     props: {
+      /* Shows/hides the modal */
       show: Boolean,
+      /* The title of the modal shown in .modal-header div. If empty title is not rendered */
       title: String,
+      /* :class object which is attached to the modal dialog element */
       modalClass: Object,
+      /* Whether to display backdrop element for this dialog. It is added to the body with calculated z-index.*/
       has_backdrop: {
         type: Boolean,
         default: true
       },
+      /* Save button config */
       saveButton: {
         type: Object,
         default: () => ({})
       },
+      /* Cancel button config */
       cancelButton: {
         type: Object,
         default: () => ({})
       },
+      /*
+      * Transition to use when showing the modal.
+      * You need to include scss @innologica/vue-stackable-modal/src/assets/transitions/translate-fade.scss
+      * */
       transition: {
         type: String,
         default: 'translate-fade'
@@ -98,7 +108,7 @@
     },
     methods: {
       handleEscape (e) {
-        if (this.show && e.keyCode === 27 && this.zIndex === modals.count) {
+        if (this.show && e.keyCode === 27 && this.zIndex === this.totalModals) {
           this.$emit('close')
         }
       },
