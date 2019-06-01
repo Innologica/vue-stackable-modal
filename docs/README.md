@@ -18,14 +18,10 @@ or
 yarn add @innologica/vue-stackable-modal
 ```
 
-include in project:
-
-## Getting started
+import to use:
 
 ```JS
 import StackModal from '@innologica/vue-stackable-modal'
-
-Vue.use(StackModal, options)
 ```
 
 ## Example
@@ -38,14 +34,16 @@ Vue.use(StackModal, options)
 ## Props
 
 | Prop        | Type           | Default  |Description  |
-| ------------- |:-------------:| -----:|-----|
+| ------------- |:-------------| -----|-----|
 | show      | Boolean | false |Shows/hides the modal|
 | title      | String |  |The title of the modal shown in .modal-header div. If empty the div is not rendered|
 | modalClass      | Object | {} |:class object which is attached to the modal dialog element |
 | has_backdrop      | Boolean | true |Whether to display backdrop element for this dialog. It is added to the body with calculated z-index. |
 | saveButton      | Object | {  title: 'Save',  visible: true,  btnClass: {'btn btn-primary': true}}| Save button config |
 | cancelButton      | Object | {  title: 'Cancel',  visible: true,  btnClass: {'btn btn-outline-secondary': true}}| Cancel button config |
-| transition      | String | translate-fade | Transition to use when showing the modal.You need to include scss with the transition |
+| transition      | String | translate-fade* | Transition to use when showing the modal.You need to include scss with the transition |
+
+*for the default transition you need to @import "~@innologica/vue-stackable-modal/src/assets/transitions/translate-fade.scss";
 
 ## Events
 

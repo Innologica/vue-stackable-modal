@@ -1,9 +1,10 @@
 {
   "name": "@innologica/vue-stackable-modal",
   "version": "0.1.1",
+  "main": "src/main.js",
   "scripts": {
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name vue-stackable-modal ./src/main.js",
+    "lib": "vue-cli-service build --target lib --name vue-stackable-modal ./src/index.js",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
