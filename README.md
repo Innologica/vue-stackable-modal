@@ -24,4 +24,4 @@ import to use:
 import StackModal from '@innologica/vue-stackable-modal'
 ```
 
-More info and demo [https://github.com/Innologica/vue-stackable-modal]
+More info and demo https://innologica.github.io/vue-stackable-modal/
