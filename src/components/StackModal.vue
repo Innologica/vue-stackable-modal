@@ -123,7 +123,7 @@
           return
 
         if (this.show && this.zIndex === 1) {
-          document.body.classList.remove('modal-open')
+          document.body.classList.add('modal-open')
         } else if (!this.show && this.zIndex === this.totalModals) {
           // enableScroll()
         }
