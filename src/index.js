@@ -1,4 +1,4 @@
-import StackModal from './src/components/StackModal'
+import StackModal from './components/StackModal'
 
 const install = (Vue) => {
   Vue.component('StackModal', StackModal)
