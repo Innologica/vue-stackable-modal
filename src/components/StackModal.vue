@@ -39,9 +39,10 @@
 </template>
 
 <script>
-  import Vue from 'vue'
+  // import Vue from 'vue'
 
-  const modals = Vue.observable({count: 0})
+  const modals = {count: 0}
+  // const modals = Vue.observable({count: 0})
 
   export default {
     name: 'StackModal',
@@ -80,6 +81,7 @@
       return {
         backdrop: null,
         zIndex: 0,
+        modals
       }
     },
     mounted () {
@@ -155,10 +157,11 @@
       },
       getClass () {
         let classes = {}
-        if (this.zIndex !== this.totalModals) {
+        // if (this.zIndex !== this.totalModals) {
           let idx = this.totalModals - this.zIndex
           classes['modal-stack-' + idx] = true
-        }
+          classes['modal-order-' + this.zIndex] = true
+        // }
         classes.aside = this.zIndex !== this.totalModals
         return {...classes, ...this.modalClass}
       },

@@ -3,7 +3,7 @@
   "version": "0.1.4",
   "scripts": {
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name vue-stackable-modal ./index.js",
+    "lib": "vue-cli-service build --target lib --name vue-stackable-modal ./src/index.js",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "prepublish": "npm run lib"
