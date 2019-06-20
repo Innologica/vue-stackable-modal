@@ -38,7 +38,7 @@ import StackModal from '@innologica/vue-stackable-modal'
 | show      | Boolean | false |Shows/hides the modal|
 | title      | String |  |The title of the modal shown in .modal-header div. If empty the div is not rendered|
 | modalClass      | Object | {} |:class object which is attached to the modal dialog element |
-| has_backdrop      | Boolean | true |Whether to display backdrop element for this dialog. It is added to the body with calculated z-index. |
+| hasBackdrop      | Boolean | true |Whether to display backdrop element for this dialog. It is added to the body with calculated z-index. |
 | saveButton      | Object | {  title: 'Save',  visible: true,  btnClass: {'btn btn-primary': true}}| Save button config |
 | cancelButton      | Object | {  title: 'Cancel',  visible: true,  btnClass: {'btn btn-outline-secondary': true}}| Cancel button config |
 | transition      | String | translate-fade* | Transition to use when showing the modal.You need to include scss with the transition |

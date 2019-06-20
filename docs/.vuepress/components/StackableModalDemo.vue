@@ -13,8 +13,9 @@
         <stack-modal
                 :show="show_second"
                 @close="show_second=false"
-                title="Modal #2"
         >
+            <p>I have no title so the modal-header is missing.</p>
+
             <button class="btn btn-warning" @click="show_third=true">Open modal 3</button>
         </stack-modal>
 
