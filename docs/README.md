@@ -51,6 +51,7 @@ import StackModal from '@innologica/vue-stackable-modal'
 |-------| --------|------------|
 | save |  <i>none</i>| When the save button is pressed
 | close |  <i>none</i>| When the cancel button is pressed, or the "x" in the title is clicked, or escape is pressed. <b>Yoo need to close the modal via the show property</b>|
+| show |  show, index, total| Called when the modal show/hides. show - open/close, index - the index in the current stack, total - total modals open|
 
 ## Slots
 

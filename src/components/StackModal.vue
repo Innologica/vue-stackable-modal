@@ -88,6 +88,7 @@
       if (this.show) {
         modals.count++
         this.zIndex = modals.count
+        this.$emit('show', true, this.zIndex, modals.count)
       }
 
       this.checkBackdrop()
@@ -98,6 +99,7 @@
       if (this.show) {
         modals.count--
         this.zIndex = modals.count
+        this.$emit('show', false, this.zIndex, modals.count)
       }
 
       if (this.backdrop && this.show)
@@ -188,6 +190,7 @@
       show (value) {
         value ? modals.count++ : modals.count--
         this.zIndex = modals.count
+        this.$emit('show', value, this.zIndex, modals.count)
 
         if (!value && modals.count === 0) {
           document.body.classList.remove('modal-open')
