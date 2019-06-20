@@ -42,6 +42,7 @@ import StackModal from '@innologica/vue-stackable-modal'
 | saveButton      | Object | {  title: 'Save',  visible: true,  btnClass: {'btn btn-primary': true}}| Save button config |
 | cancelButton      | Object | {  title: 'Cancel',  visible: true,  btnClass: {'btn btn-outline-secondary': true}}| Cancel button config |
 | transition      | String | translate-fade* | Transition to use when showing the modal.You need to include scss with the transition |
+| closeOnEscape      | Boolean | true | If enabled the component attaches event handler on document body which monitors for ESC and emits the 'close' event. |
 
 *for the default transition you need to @import "~@innologica/vue-stackable-modal/src/assets/transitions/translate-fade.scss";
 

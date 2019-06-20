@@ -22,8 +22,9 @@
                 :show="show_third"
                 @close="show_third=false"
                 title="Last modal"
+                :close-on-escape="false"
         >
-            <p>This is the last modal</p>
+            <p>This is the last modal. This modal has closeOnEscape set to false so you cannot close it via ESC key.</p>
         </stack-modal>
 
     </div>

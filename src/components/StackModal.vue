@@ -54,7 +54,7 @@
       /* :class object which is attached to the modal dialog element */
       modalClass: Object,
       /* Whether to display backdrop element for this dialog. It is added to the body with calculated z-index.*/
-      has_backdrop: {
+      hasBackdrop: {
         type: Boolean,
         default: true
       },
@@ -75,6 +75,10 @@
       transition: {
         type: String,
         default: 'translate-fade'
+      },
+      closeOnEscape: {
+        type: Boolean,
+        default: true
       }
     },
     data () {
@@ -92,8 +96,6 @@
       }
 
       this.checkBackdrop()
-
-      document.addEventListener("keydown", this.handleEscape)
     },
     destroyed () {
       if (this.show) {
@@ -107,8 +109,6 @@
       if (modals.count === 0) {
         document.body.classList.remove('modal-open')
       }
-
-      document.removeEventListener("keydown", this.handleEscape)
     },
     methods: {
       handleEscape (e) {
@@ -123,7 +123,7 @@
         }
       },
       checkBackdrop () {
-        if (!this.has_backdrop)
+        if (!this.hasBackdrop)
           return
 
         if (this.show && this.zIndex === 1) {
@@ -196,6 +196,12 @@
           document.body.classList.remove('modal-open')
         }
         this.checkBackdrop()
+      },
+      closeOnEscape: {
+        handler (value) {
+          value ? document.addEventListener('keydown', this.handleEscape):document.removeEventListener('keydown', this.handleEscape)
+        },
+        immediate: true
       }
     }
   }
@@ -242,7 +248,7 @@
     }
 </style>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .aside {
         .modal-visible-aside {
             display: block;
