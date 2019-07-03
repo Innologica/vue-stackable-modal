@@ -6,7 +6,7 @@
     "lib": "vue-cli-service build --target lib --name vue-stackable-modal ./src/index.js",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "prepublish": "npm run lib"
+    "prepublishOnly": "npm run lib"
   },
   "dependencies": {
     "core-js": "^2.6.5",
