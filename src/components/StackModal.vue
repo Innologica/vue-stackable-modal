@@ -24,6 +24,7 @@
                             >{{saveButtonOptions.title}}
                             </button>
                             <button
+                                    v-if="cancelButtonOptions.visible"
                                     type="button"
                                     :class="{ ...cancelButtonOptions.btnClass }"
                                     data-dismiss="modal"

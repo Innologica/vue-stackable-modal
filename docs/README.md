@@ -100,4 +100,8 @@ Default value:
     </div>
 </slot>
 ```
-This is the modal footer with the 2 buttons.
+This is the modal footer with the 2 buttons. If you just want to hide the footer you can provide empty footer slot e.g.:
+```vue
+<div slot="modal-footer"></div>
+```
+
