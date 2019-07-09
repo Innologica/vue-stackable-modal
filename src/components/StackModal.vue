@@ -200,7 +200,9 @@
       },
       closeOnEscape: {
         handler (value) {
-          value ? document.addEventListener('keydown', this.handleEscape):document.removeEventListener('keydown', this.handleEscape)
+          if(typeof document !== 'undefined') {
+            value ? document.addEventListener('keydown', this.handleEscape) : document.removeEventListener('keydown', this.handleEscape)
+          }
         },
         immediate: true
       }
