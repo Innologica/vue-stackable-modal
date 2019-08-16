@@ -16,7 +16,8 @@
     "dist",
     "src"
   ],
-  "main": "src/index.js",
+  "main": "dist/vue-stackable-modal.umd.min.js",
+  "jsnext:main": "dist/vue-stackable-modal.umd.min.js",
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.8.0",
