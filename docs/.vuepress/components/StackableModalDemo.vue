@@ -14,6 +14,7 @@
                     <option value="modal-fullscreen">modal-fullscreen</option>
                     <option value="modal-xl">modal-xl</option>
                     <option value="modal-xxl">modal-xxl</option>
+                    <option value="modal-90per">modal-90per</option>
                     <option value="modal-border-0">modal-border-0</option>
                 </select>
             </div>
