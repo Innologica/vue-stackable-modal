@@ -31,6 +31,9 @@ import StackModal from '@innologica/vue-stackable-modal'
 ### Source code
 <<< @/docs/.vuepress/components/StackableModalDemo.vue
 
+### Sample css
+<<< @/src/assets/modal.scss
+
 ## Props
 
 | Prop        | Type           | Default  |Description  |
