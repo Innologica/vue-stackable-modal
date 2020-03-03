@@ -25,8 +25,19 @@
                 title="Modal #1"
                 @close="show=false"
                 :modal-class="{ [modalClass]: true }"
+                :saveButton="{ visible: false }"
+                :cancelButton="{ title: 'Close', btnClass: { 'btn btn-primary': true } }"
         >
             <button class="btn btn-info" @click="show_second=true">Open modal 2</button>
+
+            <hr/>
+            <p>Additional options: </p>
+            <pre class="language-vue">
+  ...
+  :saveButton="{ visible: false }"
+  :cancelButton="{ title: 'Close' }"
+  ...
+            </pre>
         </stack-modal>
 
         <stack-modal
