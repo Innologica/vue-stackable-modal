@@ -141,7 +141,7 @@
         } else {
           if (this.backdrop) {
             document.body.removeChild(this.backdrop)
-            document.body.classList.remove('modal-open')
+            // document.body.classList.remove('modal-open')
           }
         }
       }
