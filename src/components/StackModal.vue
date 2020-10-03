@@ -80,6 +80,10 @@
       closeOnEscape: {
         type: Boolean,
         default: true
+      },
+      closeOnClickOutside: {
+        type: Boolean,
+        default: true
       }
     },
     data () {
@@ -118,7 +122,8 @@
         }
       },
       mouseDown (event) {
-        if (this.$refs.modal === event.target) {
+        if (this.closeOnClickOutside && this.$refs.modal === event.target) {
+          this.$emit('clickOutside', event)
           this.$emit('close')
           event.preventDefault()
         }
